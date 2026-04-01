@@ -9,41 +9,43 @@
       href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet"
     />
-    <script src="script.js"></script>
+    <script src="script.js" defer></script>
   </head>
   <body>
     <div id="calculator">
       <div id="screen">
-        <div id="display-number">123</div>
+        <div id="display-number">0</div>
       </div>
       <div class="btn-container-row">
-        <button><i class="material-icons">&#xe14a;</i></button>
-        <button>AC</button>
+        <button onclick="inputNumber('backspace')">
+          <i class="material-icons">&#xe14a;</i>
+        </button>
+        <button onclick="inputNumber('ac')">AC</button>
         <button>%</button>
         <button>÷</button>
       </div>
       <div class="btn-container-row">
-        <button>7</button>
-        <button>8</button>
-        <button>9</button>
+        <button onclick="inputNumber(7)">7</button>
+        <button onclick="inputNumber(8)">8</button>
+        <button onclick="inputNumber(9)">9</button>
         <button>x</button>
       </div>
       <div class="btn-container-row">
-        <button>4</button>
-        <button>5</button>
-        <button>6</button>
+        <button onclick="inputNumber(4)">4</button>
+        <button onclick="inputNumber(5)">5</button>
+        <button onclick="inputNumber(6)">6</button>
         <button>-</button>
       </div>
       <div class="btn-container-row">
-        <button>1</button>
-        <button>2</button>
-        <button>3</button>
+        <button onclick="inputNumber(1)">1</button>
+        <button onclick="inputNumber(2)">2</button>
+        <button onclick="inputNumber(3)">3</button>
         <button>+</button>
       </div>
       <div class="btn-container-row">
-        <button>±</button>
-        <button>0</button>
-        <button>00</button>
+        <button onclick="inputNumber('+-')">±</button>
+        <button onclick="inputNumber(0)">0</button>
+        <button onclick="inputNumber('00')">00</button>
         <button>=</button>
       </div>
       <div></div>
