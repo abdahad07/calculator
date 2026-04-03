@@ -1,6 +1,8 @@
 let firstOperand = "0";
 let operator = "";
 let secondOperand = "";
+let lastOperator = "";
+let lastSecondOperand = "";
 const operators = ["+", "-", "*", "÷", "%"];
 
 let body = document.querySelector("body");
@@ -78,33 +80,44 @@ const operateInput = (input) => {
 
 // Calculate function
 const calculate = () => {
+  if (secondOperand === "" && lastOperator !== "") {
+    operator = lastOperator;
+    secondOperand = lastSecondOperand;
+  }
+
   if (secondOperand === "") return;
 
-  const a = parseInt(firstOperand);
-  const b = parseInt(secondOperand);
+  const a = parseFloat(firstOperand);
+  const b = parseFloat(secondOperand);
 
   if (operator === "÷" && b === 0) {
     showError("Cannot divide by zero");
-  } else {
-    switch (operator) {
-      case "+":
-        firstOperand = (a + b).toString();
-        break;
-      case "-":
-        firstOperand = (a - b).toString();
-        break;
-      case "*":
-        firstOperand = (a * b).toString();
-        break;
-      case "÷":
-        firstOperand = (a / b).toString();
-        break;
-      case "%":
-        firstOperand = (a % b).toString();
-    }
+    return;
   }
 
-  // clear after calculation
+  switch (operator) {
+    case "+":
+      firstOperand = (a + b).toString();
+      break;
+    case "-":
+      firstOperand = (a - b).toString();
+      break;
+    case "*":
+      firstOperand = (a * b).toString();
+      break;
+    case "÷":
+      firstOperand = (a / b).toString();
+      break;
+    case "%":
+      firstOperand = (a % b).toString();
+      break;
+  }
+
+  // store last operation
+  lastOperator = operator;
+  lastSecondOperand = secondOperand;
+
+  // clear for next input
   secondOperand = "";
   operator = "";
 };
@@ -113,6 +126,8 @@ const clearAll = () => {
   firstOperand = "0";
   operator = "";
   secondOperand = "";
+  lastOperator = "";
+  lastSecondOperand = "";
 };
 
 const plusMinus = () => {
