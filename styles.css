@@ -5,39 +5,100 @@
 }
 
 body {
-  padding: 15px;
-}
-
-#calculator {
-  border: 1px solid black;
-  background-color: white;
-  border-radius: 4px;
-  display: flex;
-  flex-direction: column;
-  width: 300px;
-}
-
-#buttons {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-}
-
-button {
-  height: 48px;
+  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: large;
-  font-weight: 600;
+  background: #f4f4f4;
+  font-family: sans-serif;
 }
 
+/* Calculator container */
+#calculator {
+  width: 100%;
+  max-width: 320px;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+/* Display screen */
 #screen {
-  height: 64px;
-  font-size: xx-large;
+  min-height: 80px;
+  font-size: 2rem;
   font-weight: 500;
   display: flex;
-  justify-content: end;
-  align-items: end;
-  padding: 8px;
+  justify-content: flex-end;
+  align-items: flex-end;
+  padding: 12px;
+  background: #1e1e1e;
+  color: white;
   overflow: hidden;
+}
+
+#display-number {
+  white-space: nowrap;
+}
+
+/* Buttons grid */
+#buttons {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2px;
+  background: #ddd;
+}
+
+/* Buttons */
+button {
+  aspect-ratio: 1 / 1;
+  border: none;
+  background: #fafafa;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+/* Hover */
+button:hover {
+  background: #eaeaea;
+}
+
+/* Click effect */
+button:active {
+  transform: scale(0.95);
+  background: #ddd;
+}
+
+/* Operators */
+button[data-value="+"],
+button[data-value="-"],
+button[data-value="*"],
+button[data-value="÷"],
+button[data-value="%"] {
+  background: #f0f0f0;
+  color: #ff6b00;
+}
+
+/* Equals button */
+button[data-value="="] {
+  background: #ff6b00;
+  color: white;
+}
+
+button[data-value="="]:hover {
+  background: #e55d00;
+}
+
+/* Responsive tweak for very small screens */
+@media (max-width: 400px) {
+  body {
+    padding: 0;
+  }
+
+  #calculator {
+    max-width: 100%;
+    border-radius: 0;
+  }
 }
