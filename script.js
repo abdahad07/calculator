@@ -56,6 +56,7 @@ const takingInput = (input) => {
   if (input === "=") calculate();
   if (input === "ac") clearAll();
   if (input === "+/-") plusMinus();
+  if (input === "backspace") backspace();
   displayOutput();
 };
 
@@ -136,5 +137,20 @@ const plusMinus = () => {
     firstOperand *= -1;
   } else {
     secondOperand *= -1;
+  }
+};
+
+const backspace = () => {
+  if (secondOperand !== "") {
+    secondOperand = secondOperand.slice(0, -1);
+  } else if (operator !== "") {
+    operator = "";
+  } else {
+    firstOperand = firstOperand.slice(0, -1);
+
+    // prevent fallback to 0
+    if (firstOperand === "" || firstOperand === "-") {
+      firstOperand = "0";
+    }
   }
 };
