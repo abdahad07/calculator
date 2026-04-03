@@ -3,8 +3,21 @@ let operator = "";
 let secondOperand = "";
 const operators = ["+", "-", "*", "÷", "%"];
 
+let body = document.querySelector("body");
 let calculator = document.querySelector("#calculator");
 let numberDisplayedDiv = document.querySelector("#display-number");
+
+const errorDiv = document.createElement("div");
+body.appendChild(errorDiv);
+
+const showError = (message) => {
+  errorDiv.textContent = message;
+  errorDiv.style.color = "red";
+};
+
+const clearError = () => {
+  errorDiv.textContent = "";
+};
 
 const displayOutputExpression = () => {
   let output = "0";
@@ -29,6 +42,8 @@ calculator.addEventListener("click", (e) => {
   if (!button) return;
 
   const value = button.dataset.value;
+  clearError();
+
   takingInput(value);
 });
 
@@ -68,21 +83,25 @@ const calculate = () => {
   const a = parseInt(firstOperand);
   const b = parseInt(secondOperand);
 
-  switch (operator) {
-    case "+":
-      firstOperand = (a + b).toString();
-      break;
-    case "-":
-      firstOperand = (a - b).toString();
-      break;
-    case "*":
-      firstOperand = (a * b).toString();
-      break;
-    case "÷":
-      firstOperand = (a / b).toString();
-      break;
-    case "%":
-      firstOperand = (a % b).toString();
+  if (operator === "÷" && b === 0) {
+    showError("Cannot divide by zero");
+  } else {
+    switch (operator) {
+      case "+":
+        firstOperand = (a + b).toString();
+        break;
+      case "-":
+        firstOperand = (a - b).toString();
+        break;
+      case "*":
+        firstOperand = (a * b).toString();
+        break;
+      case "÷":
+        firstOperand = (a / b).toString();
+        break;
+      case "%":
+        firstOperand = (a % b).toString();
+    }
   }
 
   // clear after calculation
